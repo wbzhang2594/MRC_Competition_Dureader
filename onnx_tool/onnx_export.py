@@ -21,7 +21,7 @@ def main():
         default=None,
         type=str,
         required=True,
-        help="The path of the input data ([input_ids_data.txt, attention_mask_data.txt, token_type_ids_data.txt]",
+        help="The path of the input data ([input_ids_data.dat, attention_mask_data.dat, token_type_ids_data.dat]",
     )
     # Required parameters
     parser.add_argument(
@@ -38,9 +38,9 @@ def main():
     path_of_input_data = args.path_of_input_data
 
     import pickle
-    f1 = open(os.path.join(path_of_input_data, "input_ids_data.txt"), mode="rb")
-    f2 = open(os.path.join(path_of_input_data, "attention_mask_data.txt"), mode="rb")
-    f3 = open(os.path.join(path_of_input_data, "token_type_ids_data.txt"), mode="rb")
+    f1 = open(os.path.join(path_of_input_data, "input_ids_data.dat"), mode="rb")
+    f2 = open(os.path.join(path_of_input_data, "attention_mask_data.dat"), mode="rb")
+    f3 = open(os.path.join(path_of_input_data, "token_type_ids_data.dat"), mode="rb")
     input_ids = pickle.load(f1)
     attention_mask = pickle.load(f2)
     token_type_ids = pickle.load(f3)

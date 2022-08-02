@@ -932,12 +932,16 @@ def main():
         do_lower_case=args.do_lower_case,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
+    # add unknown tokens
+    tokenizer.add_tokens(["“","”"])
+
     model = AutoModelForQuestionAnswering.from_pretrained(
         args.model_name_or_path,
         from_tf=bool(".ckpt" in args.model_name_or_path),
         config=config,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
+    model.resize_token_embeddings(len(tokenizer))
 
     if args.local_rank == 0:
         # Make sure only the first process in distributed training will download model & vocab
